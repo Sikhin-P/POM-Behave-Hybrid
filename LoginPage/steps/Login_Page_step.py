@@ -48,3 +48,19 @@ def perform_logout(context):
 def verify_logout(context):
     status = HomePage(context.driver).verify_logout()
     assert status is True, 'Successful Logout message is not appearing'
+
+
+@given('Click on login option')
+def move_to_login_page(context):
+    HomePage(context.driver).move_to_login_page()
+
+
+@when('Enter invalid credentials "{username}" and "{password}"')
+def invalid_login(context, username, password):
+    LoginPage(context.driver).login(username, password)
+
+
+@then('Error message should be appeared.')
+def verify_error(context):
+    status = HomePage(context.driver).invalid_login()
+    assert status is True, "Error message is not appearing."

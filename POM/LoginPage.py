@@ -12,9 +12,6 @@ class LoginPage(Base):
         return element
 
     def login(self, user_name, user_pass):
-        # self.wait_for_element(*HomePage.account_dropdown)
-        # self.click_element(*HomePage.account_dropdown)
-        # self.click_element(*HomePage.login_option)
         self.wait_for_element(*self.login_button)
         self.type_in(*self.username, value=user_name)
         self.type_in(*self.password, value=user_pass)

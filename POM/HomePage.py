@@ -7,6 +7,7 @@ class HomePage(Base):
     login_option = (By.LINK_TEXT, 'Login')
     logout_option = (By.LINK_TEXT, 'Logout')
     logout_success = (By.CSS_SELECTOR, 'div[class *="success"]')
+    login_fail = (By.CSS_SELECTOR, 'div[class *= "error"]')
 
     def move_to_login_page(self):
         self.wait_for_element(*self.account_dropdown)
@@ -24,6 +25,13 @@ class HomePage(Base):
 
     def verify_logout(self):
         element = self.wait_for_element(*self.logout_success)
+        if element is None:
+            return False
+        else:
+            return True
+
+    def invalid_login(self):
+        element = self.wait_for_element(*self.login_fail)
         if element is None:
             return False
         else:

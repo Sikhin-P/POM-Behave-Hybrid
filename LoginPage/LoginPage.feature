@@ -11,3 +11,7 @@ Scenario: Logout
   When Click on Logout option
   Then User should be logged out
 
+Scenario: Invalid Login
+  Given Click on login option
+  When Enter invalid credentials "example@example" and "password"
+  Then Error message should be appeared.
