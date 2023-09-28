@@ -37,3 +37,14 @@ def input_creds(context, username, password):
 def verify_login_complete(context):
     element = DashBoard(context.driver).verify_dashboard()
     assert element is not None, 'Failed to login'
+
+
+@when('Click on Logout option')
+def perform_logout(context):
+    HomePage(context.driver).logout()
+
+
+@then('User should be logged out')
+def verify_logout(context):
+    status = HomePage(context.driver).verify_logout()
+    assert status is True, 'Successful Logout message is not appearing'

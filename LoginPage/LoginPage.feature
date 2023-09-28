@@ -7,3 +7,7 @@ Scenario: Login using valid credentials
   Given Wait for login page
   When enter "admin@phptravels.com" and "demoadmin" as credentials
   Then Dashboard should be loaded.
+Scenario: Logout
+  When Click on Logout option
+  Then User should be logged out
+

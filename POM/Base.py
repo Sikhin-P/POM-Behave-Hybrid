@@ -1,6 +1,6 @@
 import time
 
-from selenium.common import NoSuchElementException, ElementNotInteractableException
+from selenium.common import NoSuchElementException, ElementNotInteractableException, TimeoutException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -29,7 +29,7 @@ class Base:
         try:
             item = WebDriverWait(self.driver, timeout=20).until(EC.presence_of_element_located((locator, element)))
             return item
-        except NoSuchElementException:
+        except TimeoutException:
             return None
 
     def type_in(self, locator, element, value):
@@ -46,3 +46,6 @@ class Base:
             item.click()
         except ElementNotInteractableException:
             ActionChains(self.driver).move_to_element(item).click(item).perform()
+
+    def hover_on(self, element):
+        ActionChains(self.driver).move_to_element(element).perform()
